@@ -87,22 +87,34 @@
             </div>
         </nav> --}}
         <nav class="navbar-expand-md navbar-dark bg-dark shadow-sm" id="navid">
-            <div class="container-fluid d-flex">
+            <div class="container-fluid d-flex ">
               <a class="navbar-brand logo" href="{{ route('home') }}"> {{ config('app.name') }}</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-lg-0 navul">
-                    
+                <ul class="navbar-nav ms-auto mb-lg-0 ">
+                    <li class="nav-item navli">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
                         <li class="nav-item navli">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="#">About Us</a>
                         </li>
                         <li class="nav-item navli">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
+                        <li class="nav-item  navli">
+                            <form method="GET" action="/search" class="search-box">
+                                
+                                <button href="#" class="btn-search"><i class="bi bi-search"></i></button>
+                                <input type="text" class="input-search" name='search'  placeholder="Type to Search...">
+                                <button  id="btn-search"  type="submit"><i class="bi bi-search"></i></button>
+                               
+                            </form>
+                        </li>
                 </ul>
-                <ul class="navbar-nav ms-auto navul">
+                
+                <ul class="navbar-nav ms-auto ">
                     @guest
                     
                         <li class="nav-item navli">
@@ -115,10 +127,7 @@
                             </li>
                     @endif
                     @else 
-                    <div class="search">
-                        <i class="bi bi-search"></i>
-                        <i class="bi bi-cart-fill"></i>
-                      </div>
+                    
                     @if(Auth::user()->is_admin)
                     <li class="nav-item navli">
                         <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
@@ -148,13 +157,12 @@
              
                 @endguest
                 </ul>
-                
               </div>
-              
             </div>
-            
+            <div class="search">
+                <i class="bi bi-cart-fill"></i>
+              </div>
         </nav>
-
     </div>
         <main >
             @yield('content')

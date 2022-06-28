@@ -44,4 +44,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('user/updateProfile',[UserController::class,'update'])->name('user.postupdateProfile');
     
 });
-Route::get('/logout', [ExitController::class,'logout'])->name('exit');
+
+Route::get('/search',[ProductController::class,'search'])->name('search');

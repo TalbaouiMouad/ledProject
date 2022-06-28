@@ -95,4 +95,13 @@ class ProductController extends Controller
        ->with(['status'=>'product deleted successfully']);
 
    }
+   public function search(Request $request){
+    $keyword=  $request->search;
+   
+    if (Product::where('product_name','=',$keyword)) {
+        $products= Product::where('product_name','=',$keyword)->get();
+    return view('home')->with('products', $products);
+    }
+   return redirect()->route('home')->with('status','No Result');
+}
 }
