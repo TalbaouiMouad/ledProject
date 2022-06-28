@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    
+  }
+  #dashboard_content{
+   
+    position:absolute;
+    height: 100%;
+    width: calc(100%-240px);
+    left: 240px;
+}
+.disFlex{
+  display: flex;
+  flex-direction: row;
+}
+#card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 30px 50px;
+    box-sizing: border-box;
+    background-color: #272b34;
+}
+#navid{
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  color: white;
+  background-color: #272b34;
+}
+.logo{
+  font-size: 30px;
+  text-transform: uppercase;
+  text-decoration: none ;
+  color: white;
+}
+.navul{
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  justify-content: center;
+}
+.navli{
+  font-size: 14px;
+  margin-left: 15px;
+  padding:10px;
+  box-sizing: border-box;
+  color: rgb(255,255, 255,0.7);
+  cursor: pointer;
+}
+.search{
+  color: rgba(255, 255, 255, 0.7) ;
+}
+.saerch .fa{
+  cursor: pointer;
+  margin: 15px;
+}
