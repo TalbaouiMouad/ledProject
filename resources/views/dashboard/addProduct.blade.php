@@ -36,6 +36,13 @@
         @enderror
     </div>
     <div class="form-group">
+        <label class="form-label" for="offerPrice"> Offer Price</label>
+        <input class="form-control @error('product_price') is-invalid @enderror" type="number" id="offerPrice" name="product_offerPrice"  @if (!old('product_offerPrice'))value="{{old('product_offerPrice')}}"@else value="0"@endif>
+        @error('product_offerPrice')
+                    <x-alert type="danger" :message=$message/>
+        @enderror
+    </div>
+    <div class="form-group">
         <label class="form-label" for="amount"> Amount</label>
         <input class="form-control @error('product_amount') is-invalid @enderror" type="number" id="amount" name="product_amount" value="{{old('product_amount')}}">
         @error('product_amount')

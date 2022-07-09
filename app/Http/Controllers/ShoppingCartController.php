@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\ShoppingCart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class ShoppingCartController extends Controller
 {
@@ -12,19 +14,21 @@ class ShoppingCartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+        $products=Product::all();
+        return view('layouts.shoppingCart')->with('products',$products);
     }
+    
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function addProductToCart($id)
     {
-        //
+       
+        return view('layouts.accueil');
     }
 
     /**

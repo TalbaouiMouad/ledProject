@@ -5,12 +5,12 @@ import'./style.css'
 
 function Sidebar() {
     const SidebarData=[
-        {
-            title:'Home',
-            path:'/',
-            icon:<i className="bi bi-house-door-fill"></i>,
-            cName:'nav-text'
-        },
+        // {
+        //     title:'Home',
+        //     path:'/',
+        //     icon:<i className="bi bi-house-door-fill"></i>,
+        //     cName:'nav-text'
+        // },
         {
             title:'Comments',
             path:'/dashboard/comments',
@@ -31,7 +31,7 @@ function Sidebar() {
         },
         {
             title:'Messages',
-            path:'/messages',
+            path:'/dashboard/messages',
             icon:<i className="bi bi-envelope-paper-fill"></i>,
             cName:'nav-text'
         },

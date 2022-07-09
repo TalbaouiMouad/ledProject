@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -64,5 +64,45 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+<div class="lbody">
+    <div class="lcontainer">
+    <div class="lform">
+    <h2>Update Profile </h2>
+    <form method="POST" action="{{ route('user.postupdateProfile') }}">
+        @csrf
+        <input id="name" type="text" name="id" value="{{ $user->id }}" required hidden>
+        <input id="name" type="text" name="is_admin" value="{{ $user->is_admin }}" required hidden>
+        <input id="email" type="email"  name="email" value="{{ $user->email }}" required hidden>
+
+        <div class="inputBox">
+            <input type="text" placeholder="Name" class="@error('name') is-invalid @enderror" name="name"  value="{{ $user->name }}" required autocomplete="name" autofocus>
+            @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+        </div>
+        <div class="inputBox">
+            <input type="password" placeholder="Password"class=" @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+    
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <div class="inputBox">
+            <input type="password" placeholder="Confirm password"name="password_confirmation" required autocomplete="new-password">
+        </div>
+        <div class="inputBox">
+            <input type="submit" value={{ __('Update') }}>
+        </div>
+        
+        
+    </form>
+    </div>
+    </div>
+    </div>
 @endsection
+

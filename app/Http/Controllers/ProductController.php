@@ -25,7 +25,8 @@ class ProductController extends Controller
            'small_description'=>'required',
            'product_price'=>'required',
            'product_amount'=>'required',
-           'product_publish'
+           'product_publish',
+           'product_offerPrice'
        ]);
        if ($request->hasFile('photo')) {
          $path = 'storage/'.$request->file('photo')->store('public/img','public');
@@ -44,6 +45,7 @@ class ProductController extends Controller
        $product->small_description=$request->small_description;
        $product->photo=$path;
        $product->product_price=$request->product_price;
+       $product->product_price_offer=$request->product_offerPrice;
        $product->product_amount=$request->product_amount;
        $product->product_publish=$request->product_publish;
        $product->save();
@@ -65,7 +67,8 @@ class ProductController extends Controller
          'small_description'=>'required',
          'product_price'=>'required',
          'product_amount'=>'required',
-         'product_publish'
+         'product_publish',
+         'product_offerPrice'
        ]);
 
        if ($request->hasFile('photo')) {
@@ -79,6 +82,7 @@ class ProductController extends Controller
        $product->small_description=$request->small_description;
        $product->photo=$path;
        $product->product_price=$request->product_price;
+       $product->product_price_offer=$request->product_offerPrice;
        $product->product_amount=$request->product_amount;
        $product->product_publish=$request->product_publish;
     

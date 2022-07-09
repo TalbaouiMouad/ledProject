@@ -5,6 +5,8 @@
     </div>
 @endif
 @section('content')
-     <div id="card" products="{{$products}}">
-     </div>
+    <div id="slider">
+    </div>
+    <div id="card" products="{{$products}}">
+    </div>
 @endsection

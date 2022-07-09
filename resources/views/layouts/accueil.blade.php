@@ -1,6 +1,4 @@
 @extends('layouts.app')
 @section('content')
-@foreach($products as $product)
-    
-@endforeach
+<h1>cart page</h1>
 @endsection

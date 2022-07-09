@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->longText('long_description')->nullable();
             $table->text('small_description')->nullable();
             $table->float('product_price');
+            $table->float('product_price_offer')->default(0);
             $table->float('product_amount');
             $table->boolean('product_publish')->default(false);
             $table->string('photo')->nullable();
