@@ -1,12 +1,11 @@
 @extends('dashboard.dashboard')
 @section('pages')
-<h1>Comments</h1>
 @if (session('status'))
     <div class="alert alert-success">
         {{ session('status') }}
     </div>
 @endif
-<h1 class="mt-2">Comments List</h1>
+<h1 class="mt-2 text-white">Comments List</h1>
 @if (count($comments)>0)
     <table class="table mt-2 ">
         <thead >

@@ -7,7 +7,7 @@
     </div>
 @endif
 <div class="d-flex mt-2">
-    <h1>Products List</h1>
+    <h1 class="text-white">Products List</h1>
     <a class="btn btn-success ms-auto " href='{{route('productform')}}'>Add Product</a></div>
 
 @if (count($products)>0)

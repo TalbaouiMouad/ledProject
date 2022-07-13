@@ -9,6 +9,7 @@ import Frontend from './components/frontend/frontend';
 import Slider from './components/frontend/Slider/Slider';
 import { Footer } from './components/frontend/Footer/Footer';
 import ShoppingCart from './components/frontend/ShoppingCart/ShoppingCart';
+import ProductPage from './components/frontend/Product/ProductPage';
 
 
 
@@ -42,4 +43,13 @@ for(var i in products){
     table.push(products[i]);
 }
     ReactDOM.render(<ShoppingCart products={table}/>,document.getElementById('shoppingCart'));
+}
+if(document.getElementById('showproduct')){
+    const value = document.getElementById('showproduct').getAttribute("products");
+const products=JSON.parse(value);
+const table=[];
+for(var i in products){
+    table.push(products[i]);
+}
+    ReactDOM.render(<ProductPage products={table}/>,document.getElementById('showproduct'));
 }

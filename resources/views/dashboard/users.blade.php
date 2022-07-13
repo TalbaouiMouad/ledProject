@@ -6,7 +6,7 @@
     </div>
 @endif
     <div class="d-flex mt-2">
-    <h1>Users List</h1>
+    <h1 class="text-white">Users List</h1>
     <a class="btn btn-success ms-auto" role="button" href="{{route('dashboard.addAdmin')}}">Add Admin</a>
     </div>
     @if (count($users)>0)

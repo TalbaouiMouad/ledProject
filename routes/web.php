@@ -10,6 +10,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\UserController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -73,5 +74,8 @@ Route::get('/terms&conditions',function(){
 Route::get('/returnpolicy',function(){
     return view('layouts/returnpolicy');
 });
-
+Route::get('/product',function(){
+    $products=Product::all();
+    return view('layouts/product')->with('products',$products);
+});
 

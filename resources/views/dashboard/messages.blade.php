@@ -7,7 +7,7 @@
     </div>
 @endif
 <div class="d-flex mt-2">
-    <h1>Messages</h1>
+    <h1 class="text-white">Messages</h1>
     <a class="btn btn-success ms-auto " href='#'>Add Product</a></div>
 
 @if (count($messages)>0)

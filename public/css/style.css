@@ -19,7 +19,7 @@
   #main{
     
     margin: 0;
-    margin-top: 13vh;
+    margin-top: 10vh;
     padding-bottom: 52vh;
     box-sizing: border-box;
   }
@@ -255,15 +255,14 @@ img{
   display: inline-block;
   vertical-align: top ;
 }
-.btn{
+.cardr .btn{
   display: inline-block;
   background-color: #00999c;
   width: fit-content;
   margin-left:auto ;
   text-decoration: none;
   color: white;
-  
-}
+} 
 .btn:hover{
   background-color: #00999c;
   opacity: 0.6;
@@ -627,7 +626,7 @@ background-color: #eee;}
   position: absolute;
   bottom: 0;
   padding: 0;
-  height: 51vh;
+  height: 52vh;
   background: #212529;
   color: #eee;
 }
@@ -674,4 +673,64 @@ background-color: #eee;}
 }
 .fparagraphe .bi{
  margin:5px;
+}
+#shoppingCart{
+  margin-top: 15vh;
+}
+.product-app{
+  max-width: 1200px;
+  width: 100%;
+  margin: 100px auto;
+  box-shadow: 0 0 5px #ccc;
+}
+.details{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 30px 0;
+}
+.details .big-img{
+  max-width: 500px;
+  min-width: 290px;
+  overflow: hidden;
+  margin: 25px;
+}
+.big-img img{
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
+  display: block;
+  object-fit: cover;
+}
+.details .box{
+  max-width: 500px;
+  min-width: 290px;
+  margin: 25px;
+}
+.box .product-row{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.box .product-row h2{
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #e9ecef;
+}
+.box .product-row span{
+  color: crimson;
+}
+.box p{
+  line-height: 1.5;
+  margin: 15px 0;
+  color: #e9ecef;
+}
+.box .product-cart{
+  background: #333;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 25px;
+  margin-top: 15px;
 }

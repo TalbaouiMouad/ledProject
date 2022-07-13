@@ -6,7 +6,7 @@
     <x-alert type="success" :message="session('status')"/>
     @endif
     <div class="card-header  text-center">
-        <h1>Edit Event</h1>
+        <h1 class="text-white">Edit Product</h1>
     </div>
     <div class="card-body">
 <form action='{{route('product.postupdate')}}' method="POST" enctype="multipart/form-data">

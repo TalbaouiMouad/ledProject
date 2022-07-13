@@ -5474,6 +5474,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]');
+var productFromLocalStorage = JSON.parse(localStorage.getItem('productId') || '[]');
 
 function handleSubmit(id, name, img) {
   var packets = {
@@ -5484,6 +5485,12 @@ function handleSubmit(id, name, img) {
   axios__WEBPACK_IMPORTED_MODULE_0___default().post('/sendrequest', packets).then(function (res) {
     window.location.href = '/';
   });
+}
+
+function showProductPage(id) {
+  var productId = [id];
+  localStorage.setItem('productId', JSON.stringify(productId));
+  window.location.href = '/product';
 }
 
 function Card(props) {
@@ -5535,6 +5542,9 @@ function Card(props) {
       if (product.product_price_offer) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "cardr",
+          onClick: function onClick() {
+            showProductPage(product.id);
+          },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
             className: "cardr_img",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
@@ -5577,6 +5587,9 @@ function Card(props) {
       } else {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "cardr",
+          onClick: function onClick() {
+            showProductPage(product.id);
+          },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
             className: "cardr_img",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
@@ -5767,6 +5780,166 @@ var Footer = function Footer() {
     })]
   });
 };
+
+/***/ }),
+
+/***/ "./resources/js/components/frontend/Product/ProductPage.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/frontend/Product/ProductPage.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _img_icondesign_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./img/icondesign.png */ "./resources/js/components/frontend/Product/img/icondesign.png");
+/* harmony import */ var _img_iconadapter_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./img/iconadapter.png */ "./resources/js/components/frontend/Product/img/iconadapter.png");
+/* harmony import */ var _img_iconinstall_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./img/iconinstall.png */ "./resources/js/components/frontend/Product/img/iconinstall.png");
+/* harmony import */ var _img_iconpower_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./img/iconpower.png */ "./resources/js/components/frontend/Product/img/iconpower.png");
+/* harmony import */ var _img_iconshipping_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./img/iconshipping.png */ "./resources/js/components/frontend/Product/img/iconshipping.png");
+/* harmony import */ var _img_warranty_jpg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./img/warranty.jpg */ "./resources/js/components/frontend/Product/img/warranty.jpg");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+
+var productFromLocalStorage = JSON.parse(localStorage.getItem('productId') || '[]');
+console.log(productFromLocalStorage);
+var productPageCart = [{
+  id: 1,
+  img: _img_icondesign_png__WEBPACK_IMPORTED_MODULE_1__["default"],
+  title: 'Customized Neon Signs',
+  description: 'All of our neon light signs are custom designed by us, and can be altered to your specifications, size and colors. We can make any neon sign you want, in any fonts and a wide selection of colors.'
+}, {
+  id: 2,
+  img: _img_iconadapter_png__WEBPACK_IMPORTED_MODULE_2__["default"],
+  title: 'Adapter Included',
+  description: 'Your new LED neon comes with a 4.9 ft transparent cord which plugs into a certified adapter (if you need an adapter for another country, ask when checking out). The adapter has an additional 3-6 ft of cable that plugs into the socket.'
+}, {
+  id: 3,
+  img: _img_iconinstall_png__WEBPACK_IMPORTED_MODULE_3__["default"],
+  title: 'Easy to Install',
+  description: 'Our LED Neon signs are mounted on high quality, clear acrylic backboards, stands or boxes. Backboards feature pre-drilled holes for easy wall mounting, and are ready for mounting, right out of the box.'
+}, {
+  id: 4,
+  img: _img_iconpower_png__WEBPACK_IMPORTED_MODULE_4__["default"],
+  title: 'Low Energy, High Brightness',
+  description: 'Our LED neon signs are both economical and ecologically friendly. They have low energy consumption and a 100,000+ hours lifespan'
+}, {
+  id: 5,
+  img: _img_iconshipping_png__WEBPACK_IMPORTED_MODULE_5__["default"],
+  title: 'Worldwide Shipping',
+  description: ' Standard orders take 3-5 weeks*, including production and shipping. Rush orders take 2-3 weeks*, including production and shipping to addresses in the USA and Canada. Please choose the Rush My Order option at checkout, and let us know the date by which you need your sign to arrive.'
+}, {
+  id: 6,
+  img: _img_warranty_jpg__WEBPACK_IMPORTED_MODULE_6__["default"],
+  title: '24 Months Warranty',
+  description: 'We offer the latest LED neon flex technology which is both stronger & lighter than glass neon tubes. All of our indoor and outdoor signs come with a 24-month manufacturer warranty covering faulty items. Click here for more details'
+}];
+
+var ProductPage = function ProductPage(props) {
+  var products = props.products;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+      className: "product-app",
+      children: products.map(function (product) {
+        if (product.id === productFromLocalStorage[0]) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            className: "details",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+              className: "big-img",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
+                src: product.photo,
+                alt: product.product_name
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+              className: "box",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "product-row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
+                  children: product.product_name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
+                  children: [product.product_price, " Dh"]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+                children: product.small_description
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+                children: product.long_description
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+                className: "product-cart",
+                children: "Add to cart"
+              })]
+            })]
+          });
+        }
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+      className: "container text-light",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        className: "row",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h1", {
+          className: "text-center",
+          children: ["LED NEON POP CULTURE SIGNS ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("br", {}), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("strong", {
+            children: "WOW!"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+          className: "col",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("p", {
+            children: ["Neon wall art that POPS! This bold and beautiful LED neon sign would look perfect in a bedroom, games room, arcade or anywhere. Have a unique design in mind? Upload your image or idea and our designers will send you a free neon sign mockup. ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("strong", {
+              children: "Safety:"
+            }), " Our neon flex LED signs, lights and lamps are shatter resistant, energy efficient, recyclable, UV resistant and conform to CE, RoHS and UL certification."]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+          className: "col",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+            children: "Have a unique design in mind? Upload your image or idea and our designers will send you a free neon sign mockup."
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+        className: "row",
+        children: productPageCart.map(function (cart) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+            className: "col",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+              className: "card text-bg-success text-center p-2 mb-3 shadow  rounded",
+              style: {
+                width: "18rem"
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
+                className: "card-img-top bg-light",
+                style: {
+                  width: "40%",
+                  margin: 'auto'
+                },
+                src: cart.img,
+                alt: "Card image cap"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "card-body",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h5", {
+                  className: "card-title",
+                  children: cart.title
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+                  className: "card-text",
+                  children: cart.description
+                })]
+              })]
+            }, cart.id)
+          });
+        })
+      })]
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductPage);
 
 /***/ }),
 
@@ -6114,7 +6287,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_frontend_Slider_Slider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/frontend/Slider/Slider */ "./resources/js/components/frontend/Slider/Slider.js");
 /* harmony import */ var _components_frontend_Footer_Footer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/frontend/Footer/Footer */ "./resources/js/components/frontend/Footer/Footer.js");
 /* harmony import */ var _components_frontend_ShoppingCart_ShoppingCart__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/frontend/ShoppingCart/ShoppingCart */ "./resources/js/components/frontend/ShoppingCart/ShoppingCart.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_frontend_Product_ProductPage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/frontend/Product/ProductPage */ "./resources/js/components/frontend/Product/ProductPage.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -6128,7 +6303,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 if (document.getElementById('sidebar')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_dashboard_Sidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {}), document.getElementById('sidebar'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_dashboard_Sidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {}), document.getElementById('sidebar'));
 }
 
 if (document.getElementById('card')) {
@@ -6140,21 +6315,21 @@ if (document.getElementById('card')) {
     table.push(products[i]);
   }
 
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_frontend_Card_Card__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_frontend_Card_Card__WEBPACK_IMPORTED_MODULE_4__["default"], {
     products: table
   }), document.getElementById('card'));
 }
 
 if (document.getElementById('cartitems')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_frontend_ShoppingCart_CartItems__WEBPACK_IMPORTED_MODULE_5__["default"], {}), document.getElementById('cartitems'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_frontend_ShoppingCart_CartItems__WEBPACK_IMPORTED_MODULE_5__["default"], {}), document.getElementById('cartitems'));
 }
 
 if (document.getElementById('slider')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_frontend_Slider_Slider__WEBPACK_IMPORTED_MODULE_7__["default"], {}), document.getElementById('slider'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_frontend_Slider_Slider__WEBPACK_IMPORTED_MODULE_7__["default"], {}), document.getElementById('slider'));
 }
 
 if (document.getElementById('footer')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_frontend_Footer_Footer__WEBPACK_IMPORTED_MODULE_8__.Footer, {}), document.getElementById('footer'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_frontend_Footer_Footer__WEBPACK_IMPORTED_MODULE_8__.Footer, {}), document.getElementById('footer'));
 }
 
 if (document.getElementById('shoppingCart')) {
@@ -6168,9 +6343,25 @@ if (document.getElementById('shoppingCart')) {
     _table.push(_products[i]);
   }
 
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_frontend_ShoppingCart_ShoppingCart__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_frontend_ShoppingCart_ShoppingCart__WEBPACK_IMPORTED_MODULE_9__["default"], {
     products: _table
   }), document.getElementById('shoppingCart'));
+}
+
+if (document.getElementById('showproduct')) {
+  var _value2 = document.getElementById('showproduct').getAttribute("products");
+
+  var _products2 = JSON.parse(_value2);
+
+  var _table2 = [];
+
+  for (var i in _products2) {
+    _table2.push(_products2[i]);
+  }
+
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_frontend_Product_ProductPage__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    products: _table2
+  }), document.getElementById('showproduct'));
 }
 
 /***/ }),
@@ -11324,6 +11515,96 @@ module.exports = function (cssWithMappingToString) {
 
   return list;
 };
+
+/***/ }),
+
+/***/ "./resources/js/components/frontend/Product/img/iconadapter.png":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/frontend/Product/img/iconadapter.png ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/iconadapter.png?3eb6eceba6ffcd2401717baadf4df7bb");
+
+/***/ }),
+
+/***/ "./resources/js/components/frontend/Product/img/icondesign.png":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/frontend/Product/img/icondesign.png ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/icondesign.png?820365d04df1e4576d00a4e0b70f35a7");
+
+/***/ }),
+
+/***/ "./resources/js/components/frontend/Product/img/iconinstall.png":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/frontend/Product/img/iconinstall.png ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/iconinstall.png?25b89f32f04ac4b3ff850b7bcb8f0f94");
+
+/***/ }),
+
+/***/ "./resources/js/components/frontend/Product/img/iconpower.png":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/frontend/Product/img/iconpower.png ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/iconpower.png?2e3047ac8889f7e837034f8232d0fa1e");
+
+/***/ }),
+
+/***/ "./resources/js/components/frontend/Product/img/iconshipping.png":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/frontend/Product/img/iconshipping.png ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/iconshipping.png?8d6fc431b0f3a3e4d136c40298e2adc6");
+
+/***/ }),
+
+/***/ "./resources/js/components/frontend/Product/img/warranty.jpg":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/frontend/Product/img/warranty.jpg ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/warranty.jpg?219a14e3ff4a3dad7845c13097019aa9");
 
 /***/ }),
 

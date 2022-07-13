@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const cartFromLocalStorage=JSON.parse(localStorage.getItem('cart')||'[]');
-
+const productFromLocalStorage=JSON.parse(localStorage.getItem('productId')||'[]');
 
 function handleSubmit(id,name,img){
   
@@ -18,11 +18,16 @@ function handleSubmit(id,name,img){
          window.location.href='/';
       }
     );
-        
+}
+function showProductPage(id){
+  const productId=[id];
+  localStorage.setItem('productId', JSON.stringify(productId));
+  window.location.href='/product';
 }
 function Card (props){
     const products=props.products;
     const [cart, setCart] = useState(cartFromLocalStorage);
+    
     console.log('crtls.',cartFromLocalStorage);
     console.log('local',cartFromLocalStorage.length);
     const addToCart=(product)=>{
@@ -52,27 +57,25 @@ function Card (props){
         return ;
       }
     }
+    
     useEffect(()=>{localStorage.setItem('cart', JSON.stringify(cart))},[cart])
+   
  
 return <div className="main-content">
   
 {products.map((product)=>{
          if (product.product_price_offer) {
             
-        return <div className="cardr" key={product.id} >
+        return <div className="cardr" key={product.id} onClick={()=>{showProductPage(product.id)}}>
         <div className="cardr_img">
              <img src={product.photo}/> 
         </div>
         <div className="cardr_header">
             <h2>{product.product_name}</h2>
             <p>{product.small_description}</p>
-            <div className=" card-footer disFlex">
-               
-                   
+            <div className=" card-footer disFlex">    
                     <p className="pricedashed">{product.product_price}<span>Dh</span></p>
                     <p className="price">{product.product_price_offer}<span>Dh</span></p>
-                    
-            
             <a  className="btn" onClick={ ()=>{
               addToCart({id:product.id,img:product.photo,name:product.product_name,amount:1})
               handleSubmit(product.id)}}>Add to cart</a>
@@ -80,7 +83,7 @@ return <div className="main-content">
         </div>
     </div>
     }else{
-        return <div className="cardr" key={product.id} >
+        return <div className="cardr" key={product.id} onClick={()=>{showProductPage(product.id)}}>
         <div className="cardr_img">
              <img src={product.photo}/> 
         </div>

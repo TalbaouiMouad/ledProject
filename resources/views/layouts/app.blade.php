@@ -68,7 +68,7 @@
                     
                     @if(Auth::user()->is_admin)
                     <li class="nav-item navli">
-                        <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('dashboard.productList') }}">Dashboard</a>
                     </li> 
                     @endif
                   
@@ -87,9 +87,6 @@
                                     @csrf
                                 </form>
                         </li>
-                      
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                   </li>
              
