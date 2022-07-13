@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import icondesign from './img/icondesign.png';
 import iconadapter from './img/iconadapter.png';
 import iconinstall from './img/iconinstall.png';
 import iconpower from './img/iconpower.png';
 import iconshipping from './img/iconshipping.png';
 import warranty from './img/warranty.jpg';
+
+import axios from 'axios';
+import StripeCheckout from 'react-stripe-checkout';
+
+
+
+
 const productFromLocalStorage=JSON.parse(localStorage.getItem('productId')||'[]');
-console.log(productFromLocalStorage);
+const cartFromLocalStorage=JSON.parse(localStorage.getItem('cart')||'[]');
+const shopFromLocalStorage=JSON.parse(localStorage.getItem('shop')||'[]');
+const clientFromLocalStorage=JSON.parse(localStorage.getItem('client')||'[]');
+
+
+  
 const productPageCart=[
     {   id:1,
         img:icondesign,
@@ -39,15 +51,58 @@ const productPageCart=[
         description:'We offer the latest LED neon flex technology which is both stronger & lighter than glass neon tubes. All of our indoor and outdoor signs come with a 24-month manufacturer warranty covering faulty items. Click here for more details'
     }
 ];
-const ProductPage =(props) => {
+function showProductPage(id){
+    const productId=[id];
+    localStorage.setItem('productId', JSON.stringify(productId));
+    window.location.href='/product';
+  }
+function ProductPage (props)  {
     const products=props.products;
+const [cart, setCart] = useState(cartFromLocalStorage);
+const [btnAction,setBtnAction]=useState(0);
+const [shop,setShop]=useState(shopFromLocalStorage);
+const [client,setClient]=useState(clientFromLocalStorage);
+useEffect(()=>{ cartFromLocalStorage.map((item)=>{
+        if (item.id===productFromLocalStorage[0]) {
+            setBtnAction(1);
+            console.log('btn',btnAction);
+        }
+    })})
+     function hundleToken(token,addresses){
+        setClient([...client,{token:token,addresses:addresses}]);
+        localStorage.setItem('client', JSON.stringify(client));
+        console.log(token,addresses);
 
+     }
+const addToCart=(product)=>{
+    if (cartFromLocalStorage.length>0){
+        for (let index = 0; index < cartFromLocalStorage.length; index++) {
+            const element = cartFromLocalStorage[index];
+            console.log('elem.',element);
+            if (element.id===product.id) {
+              cartFromLocalStorage.splice(index,1,element);
+              setCart(cartFromLocalStorage);
+              localStorage.setItem('cart', JSON.stringify(cart));
+              return;
+            }}
+        setCart([...cart,product]);
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }}
+    const addToShop=(product)=>{
+        setShop([...shop,product]);
+        localStorage.setItem('shop', JSON.stringify(shop));}
+    useEffect(()=>{localStorage.setItem('cart', JSON.stringify(cart))},[cart])
+    useEffect(()=>{localStorage.setItem('shop', JSON.stringify(shop))},[shop])
+    useEffect(()=>{localStorage.setItem('client', JSON.stringify(client))},[client])
+    console.log('shopFromLocalStorage',shopFromLocalStorage);
+ 
   return (
     <div>
     <div className='product-app'>  
     {products.map((product)=>{
-              if (product.id===productFromLocalStorage[0]) {
-                return<div className='details'>
+              if (product.id===productFromLocalStorage[0] ) {
+                if (btnAction) {
+                    return<div className='details'>
                     <div className='big-img'>
                         <img src={product.photo} alt={product.product_name}/>
                     </div>
@@ -58,10 +113,47 @@ const ProductPage =(props) => {
                         </div>
                        <p>{product.small_description}</p>
                        <p>{product.long_description}</p> 
-                       <button className='product-cart'>Add to cart</button>
+                       
+                        
+                            <StripeCheckout
+                            stripeKey='pk_test_51LL7qpBgJQG9c2lDd845gcXyVkzP9OXiDETHAJHemDovvOk3KauC73Eyj2EGnif0DGSDuwH3bcbsjUlwQDuI7Kp600ObK4oMlq'
+                            token={hundleToken}
+                            billingAddress
+                            shippingAddress
+                            amount={product.product_price*100}
+                            name={product.product_name}
+                            > <a className='btn btn-warning' onClick={()=>{
+                                addToShop(product)
+                            }} >Shop Now</a></StripeCheckout>
+                      
+                       
+                       
                     </div>
                 </div>
-             }}
+                } else {
+                     return<div className='details'>
+                    <div className='big-img'>
+                        <img src={product.photo} alt={product.product_name}/>
+                    </div>
+                    <div className='box'>
+                        <div className='product-row'>
+                            <h2>{product.product_name}</h2>
+                            <span>{product.product_price} Dh</span>
+                        </div>
+                       <p>{product.small_description}</p>
+                       <p>{product.long_description}</p> 
+                       
+                        
+                       
+                       <a className='product-cart' onClick={ ()=>{
+              addToCart({id:product.id,img:product.photo,name:product.product_name});
+              showProductPage(product.id)
+              }}>Add to cart</a>
+                    </div>
+                </div>
+                }
+                
+            }}
              )}
         </div>
         <div className='container text-light'>
@@ -78,7 +170,7 @@ const ProductPage =(props) => {
       </div> 
       <div className='row'>
        { productPageCart.map((cart)=>{
-            return <div className='col'><div className="card text-bg-success text-center p-2 mb-3 shadow  rounded" style={{width: "18rem"}} key={cart.id}>
+            return <div className='col'><div className="card text-bg-primary text-center p-2 mb-3 shadow  rounded" style={{width: "18rem"}} key={cart.id}>
                 <img className="card-img-top bg-light"style={{width: "40%",margin:'auto'}} src={cart.img} alt="Card image cap"></img>
                 <div className="card-body">
                 <h5 className="card-title">{cart.title}</h5>

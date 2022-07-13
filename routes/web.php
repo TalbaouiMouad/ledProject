@@ -44,6 +44,9 @@ Route::get('/dashboard/users/addAdminForm',[UserController::class,'addAdminForm'
 Route::post('/dashboard/users/addAdminForm',[UserController::class,'store'])->name('dashboard.postaddAdmin');
 Route::get('/dashboard/users/{id}/delete',[UserController::class,'destroy'])->name('user.delete');
 Route::get('/dashboard/messages',[MessageController::class,'dashboardIndex']);
+Route::get('/dashboard/orders',function(){
+    return view('dashboard/orders');
+});
 });
 Route::middleware(['auth'])->group(function () {
     Route::get('user/{id}/updateProfile',[UserController::class,'showUpdateForm'])->name('user.updateProfile');
@@ -55,7 +58,7 @@ Route::get('/search',[ProductController::class,'search'])->name('search');
 
 Route::get('/cart/{id}',[ShoppingCartController::class,'addProductToCart']);
 
-Route::post('/sendrequest', [AxiosReceiverController::class,'ReceiveIt'])->name('sendrequest');
+
 
 Route::get('/contactus',[MessageController::class,'index'])->name('show.contactus');
 Route::post('/sendmessage',[MessageController::class,'store'])->name('sendmessage');
@@ -78,4 +81,9 @@ Route::get('/product',function(){
     $products=Product::all();
     return view('layouts/product')->with('products',$products);
 });
+Route::get('/checkout',function(){
+    $products=Product::all();
+    return view('layouts/checkout')->with('products',$products);
+});
+
 

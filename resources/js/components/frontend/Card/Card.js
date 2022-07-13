@@ -78,7 +78,7 @@ return <div className="main-content">
                     <p className="price">{product.product_price_offer}<span>Dh</span></p>
             <a  className="btn" onClick={ ()=>{
               addToCart({id:product.id,img:product.photo,name:product.product_name,amount:1})
-              handleSubmit(product.id)}}>Add to cart</a>
+              showProductPage(product.id)}}>Add to cart</a>
             </div>
         </div>
     </div>
@@ -97,7 +97,7 @@ return <div className="main-content">
             
             <a  className="btn" onClick={ ()=>{
               addToCart({id:product.id,img:product.photo,name:product.product_name,amount:1})
-              handleSubmit(product.id)}}>Add to cart</a>
+              showProductPage(product.id)}}>Add to cart</a>
             </div>
         </div>
     </div>

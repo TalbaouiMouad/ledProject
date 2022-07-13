@@ -12,6 +12,12 @@ function Sidebar() {
         //     cName:'nav-text'
         // },
         {
+            title:'Orders',
+            path:'/dashboard/orders',
+            icon:<i className="bi bi-bell"></i>,
+            cName:'nav-text'
+        },
+        {
             title:'Comments',
             path:'/dashboard/comments',
             icon:<i className="bi bi-list-columns-reverse"></i>,
@@ -34,7 +40,8 @@ function Sidebar() {
             path:'/dashboard/messages',
             icon:<i className="bi bi-envelope-paper-fill"></i>,
             cName:'nav-text'
-        },
+        }
+        
     ];
     const[isActive,setActive]=useState('true');
     const handleToggle=()=>{
