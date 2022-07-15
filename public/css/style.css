@@ -180,9 +180,16 @@
   justify-content: flex-start;
   
 }
+.cardr_img{
+  height: 50%;
+  width: 100%;
+  padding: auto;
+}
+..cardr_img img{
+  width: 100%;
+}
 .cardr:first-child .cardr_img{
   width: 50em;
- 
 }
 .cardr:first-child img{
   width: 100%;
@@ -204,6 +211,7 @@
  
   padding: 5px;
   width: 33%;
+ 
   border-radius: 15px;
   border: royalblue solid 1px;
   display: flex;

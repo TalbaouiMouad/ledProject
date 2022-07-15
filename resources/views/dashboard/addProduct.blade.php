@@ -1,6 +1,6 @@
 @extends('dashboard.dashboard')
 @section('pages')
-<div class="container">
+<div class="container text-light">
 <form action='{{route('addProduct')}}' method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
